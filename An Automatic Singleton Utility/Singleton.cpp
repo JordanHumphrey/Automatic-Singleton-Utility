@@ -7,6 +7,16 @@ template <typename TAG> class Singleton
 public:
 	Singleton(void)
 	{
+		/*
+		Constructor figures out the relative address of the dervied instance
+		and stores the result in the singleton pointer. Since the derived class
+		could be deriving from more than just the singleton, 'this' from SampleClass
+		might be different from the singleton 'this'. Solution to this takes a
+		non existant object sitting at address 0x1 in memory, cast it to both types,
+		seeing the difference. This difference will be the distance between 
+		Singleton<TAG> and its derived type SampleClass, which is used to calculate
+		the singleton pointer.
+		*/
 		assert(!ms_Singleton);
 		int offset = (int)(TAG*)1 - (int)(Singleton <TAG>*)(TAG*)1;
 		ms_Singleton = (TAG*)((int)this + offset);

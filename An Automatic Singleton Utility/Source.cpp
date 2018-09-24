@@ -13,9 +13,3 @@ public:
 // Quick and easy, albeit a bit lazy, treat the singleton
 // like a global for notational convenience
 #define g_DataTypeMgr DataTypeMgr::GetSingleton()
-
-void RandomFunction(void)
-{
-	DataType* data1 = DataTypeMgr::GetSingleton().GetDataType("your structure's name");
-	DataType* data2 = g_DataTypeMgr.GetDataType("your structure's name");
-}
